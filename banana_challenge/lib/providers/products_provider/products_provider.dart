@@ -31,5 +31,17 @@ class ProdcutsPovider extends ChangeNotifier{
     busqueda = paramBusqueda;
   }
 
+  void addFavoritos(int id){
+
+    products.forEach((Product element) {
+      if (element.id == id) {
+        
+        element.favorite = !element.favorite;
+      }
+    });
+
+    notifyListeners();
+  }
+
 
 }

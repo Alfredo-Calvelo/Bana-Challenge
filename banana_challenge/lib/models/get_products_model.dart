@@ -49,6 +49,7 @@ class Product {
         required this.category,
         required this.thumbnail,
         required this.images,
+        required this.favorite
     });
 
     int id;
@@ -60,6 +61,7 @@ class Product {
     int stock;
     String brand;
     String category;
+    bool favorite;
     String thumbnail;
     List<String> images;
 
@@ -78,6 +80,7 @@ class Product {
         brand: json["brand"],
         category: json["category"],
         thumbnail: json["thumbnail"],
+        favorite: false,
         images: List<String>.from(json["images"].map((x) => x)),
     );
 

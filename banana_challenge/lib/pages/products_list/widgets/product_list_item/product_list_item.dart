@@ -3,6 +3,9 @@ import 'package:banana_challenge/models/get_products_model.dart';
 import 'package:banana_challenge/pages/products_list/services.dart';
 import 'package:banana_challenge/pages/products_list/widgets/product_list_item/product_list_item_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../providers/products_provider/products_provider.dart';
 
 // ignore: must_be_immutable
 class ProductListItem extends StatelessWidget {
@@ -16,6 +19,8 @@ class ProductListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productsProvider = Provider.of<ProdcutsPovider>(context);
+
     return Padding(
       padding: ProductListItemStyles.buttonPadding,
       child: MaterialButton(
@@ -35,7 +40,17 @@ class ProductListItem extends StatelessWidget {
               const Separador(),
               Description(description: product.description),
               const Separador(),
-              Stock(stock: product.stock,)
+              Stock(stock: product.stock,),
+              const Separador(),
+              IconButton(
+                onPressed: () {
+                  productsProvider.addFavoritos(product.id);
+                }, 
+                icon:  
+                product.favorite?
+                Icon( Icons.star, size: 40, color: Colors.amber[400],)
+                :Icon( Icons.star_border, size: 40, color: Colors.amber[400],),
+              )
             ],
           ),
         ),
